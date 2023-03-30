@@ -35,9 +35,9 @@
             <hr class="mt-0">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('gestionUsers') }}" class="nav-link">
+                    <a href="{{ route('users.index') }}" class="nav-link">
                         <i class="fas fa-users-cog"></i>
-                        <p>Gestion des comptes</p>
+                        <p>Gestion des utilisateurs</p>
                     </a>
                 </li>
             </ul>
