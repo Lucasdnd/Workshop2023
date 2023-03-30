@@ -12,7 +12,7 @@
                 <th>Nom</th>
                 <th>Adresse email</th>
                 <th>Role</th>
-                <th>Action</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
