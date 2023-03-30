@@ -19,3 +19,20 @@ Auth::routes();
 Route::get('/', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::get('/leads', function () {
+    return view('leads');
+})->name('leads');
+
+Route::get('/prospects', function () {
+    return view('prospects');
+})->name('prospects');
+
+Route::get('/clients', function () {
+    return view('clients');
+})->name('clients');
+
+Route::get('/gestionUsers', function () {
+    return view('gestionUsers');
+})->name('gestionUsers');
+
