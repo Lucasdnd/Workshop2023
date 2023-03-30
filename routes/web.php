@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,14 @@ Route::get('contact/leads', [ContactController::class, 'leads'])->name('contact.
 Route::get('contact/prospects', [ContactController::class, 'prospects'])->name('contact.prospects');
 Route::get('contact/clients', [ContactController::class, 'clients'])->name('contact.clients');
 
-Route::get('/gestionUsers', function () {
-    return view('gestionUsers');
-})->name('gestionUsers');
+Route::middleware('admin')->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+});
 
 // web.php
 Route::resource('contact.contacts', ContactController::class)->except(['contact.index']);
@@ -37,5 +43,8 @@ Route::delete('/contact/{contact}', [ContactController::class, 'destroy'])->name
 Route::get('/contact/create', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
+Route::fallback(function () {
+    return redirect('/');
+});
 
 
