@@ -296,9 +296,9 @@ return [
             'topnav_right' => true,
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'DASHBOARD',
+            'url'  => '',
+            'icon' => 'fas fa-chart-line',
         ],
         ['header' => 'account_settings'],
         [
@@ -312,6 +312,27 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         ['header' => 'customers'],
+        [
+            'text' => 'Leads',
+            'url'  => 'contact/leads',
+            'icon' => 'fas fa-users',
+        ],
+        [
+            'text' => 'Prospects',
+            'url'  => 'contact/prospects',
+            'icon' => 'fas fa-user',
+        ],
+        [
+            'text' => 'Clients',
+            'url'  => 'contact/clients',
+            'icon' => 'fas fa-users-cog',
+        ],
+        ['header' => 'users'],
+        [
+            'text' => 'Utilisateurs',
+            'url'  => 'gestionUsers',
+            'icon' => 'fas fa-users-cog',
+        ],
     ],
 
     /*

@@ -1,7 +1,7 @@
 <!-- Vue Blade -->
 @extends('adminlte::page')
 
-@section('title', 'Dashboard - NK informatique')
+@section('title', 'Prospets - NK informatique')
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
