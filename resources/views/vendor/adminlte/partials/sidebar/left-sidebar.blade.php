@@ -14,19 +14,19 @@
                 {{-- Configured sidebar links --}}
                 @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
                 <li class="nav-item">
-                    <a href="{{ route('leads') }}" class="nav-link">
+                    <a href="{{ route('contact.leads') }}" class="nav-link">
                         <i class="fas fa-users"></i>
                         <p>Leads</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('prospects') }}" class="nav-link">
+                    <a href="{{ route('contact.prospects') }}" class="nav-link">
                         <i class="fas fa-user"></i>
                         <p>Prospects</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('clients') }}" class="nav-link">
+                    <a href="{{ route('contact.clients') }}" class="nav-link">
                         <i class="fas fa-user-check"></i>
                         <p>Clients</p>
                     </a>

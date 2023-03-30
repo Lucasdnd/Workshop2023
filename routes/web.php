@@ -21,13 +21,21 @@ Route::get('/', function () {
     return view('home');
 })->name('home')->middleware('auth');
 
-Route::get('/leads', [ContactController::class, 'leads'])->name('leads');
-Route::get('/prospects', [ContactController::class, 'prospects'])->name('prospects');
-Route::get('/clients', [ContactController::class, 'clients'])->name('clients');
+Route::get('contact/leads', [ContactController::class, 'leads'])->name('contact.leads');
+Route::get('contact/prospects', [ContactController::class, 'prospects'])->name('contact.prospects');
+Route::get('contact/clients', [ContactController::class, 'clients'])->name('contact.clients');
 
 Route::get('/gestionUsers', function () {
     return view('gestionUsers');
 })->name('gestionUsers');
 
-// Add the resource routes for the ContactController except for the index method
-Route::resource('contacts', ContactController::class)->except(['index']);
+// web.php
+Route::resource('contact.contacts', ContactController::class)->except(['contact.index']);
+Route::get('contact/{contact}/edit', [ContactController::class, 'edit'])->name('contact.edit');
+Route::put('/contact/{contact}', [ContactController::class, 'update'])->name('contacts.update');
+Route::delete('/contact/{contact}', [ContactController::class, 'destroy'])->name('contact.destroy');
+Route::get('/contact/create', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+
+
