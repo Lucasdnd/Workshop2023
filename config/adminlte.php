@@ -320,12 +320,12 @@ return [
         [
             'text' => 'Prospects',
             'url'  => 'contact/prospects',
-            'icon' => 'fas fa-user',
+            'icon' => 'fas fa-user-tag',
         ],
         [
             'text' => 'Clients',
             'url'  => 'contact/clients',
-            'icon' => 'fas fa-users-cog',
+            'icon' => 'fas fa-user-check',
         ],
         ['header' => 'users'],
         [
