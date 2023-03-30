@@ -330,7 +330,7 @@ return [
         ['header' => 'users'],
         [
             'text' => 'Utilisateurs',
-            'url'  => 'gestionUsers',
+            'url'  => 'users',
             'icon' => 'fas fa-users-cog',
         ],
     ],
