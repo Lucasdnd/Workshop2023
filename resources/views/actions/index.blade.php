@@ -38,8 +38,8 @@
                     @endif
                 </td>
                 <td>{{ $action->comment }}</td>
-                <td>{{ $action->scheduled_at }}</td>
-                <td>{{ $action->contact->name }}</td>
+                <td>{{ \Carbon\Carbon::parse($action->scheduled_at)->format('d/m/Y H:i') }}</td>
+                <td>{{ $action->contact->first_name }} {{ $action->contact->last_name }}</td>
                 <td>
                     <a href="{{ route('actions.show', $action->id) }}" class="btn btn-info">Voir</a>
                     <a href="{{ route('actions.edit', $action->id) }}" class="btn btn-primary">Mettre à jour</a>

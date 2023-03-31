@@ -15,7 +15,19 @@
         <tbody>
             <tr>
                 <th>Type</th>
-                <td>{{ $action->type }}</td>
+                <td>
+                    @if ($action->type === 'call')
+                    {{ __('Appel') }}
+                    @elseif ($action->type === 'email')
+                    {{ __('Email') }}
+                    @elseif ($action->type === 'meeting')
+                    {{ __('Réunion') }}
+                    @elseif ($action->type === 'note')
+                    {{ __('Note') }}
+                    @elseif ($action->type === 'other')
+                    {{ __('Autre') }}
+                    @endif
+                </td>
             </tr>
             <tr>
                 <th>Commentaire</th>
@@ -23,11 +35,11 @@
             </tr>
             <tr>
                 <th>Date planifiée</th>
-                <td>{{ $action->scheduled_at }}</td>
+                <td>{{ \Carbon\Carbon::parse($action->scheduled_at)->format('d/m/Y H:i') }}</td>
             </tr>
             <tr>
                 <th>Contact</th>
-                <td>{{ $action->contact->name }}</td>
+                <td>{{ $action->contact->first_name }} {{ $action->contact->last_name }}</td>
             </tr>
         </tbody>
     </table>
