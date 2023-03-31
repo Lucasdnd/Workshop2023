@@ -91,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-primary card-outline chart-card">
+                <div class="card card-primary card-outline chart-card todo">
                     <div class="card-header ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">
                             <i class="ion ion-clipboard mr-1"></i>
@@ -110,112 +110,52 @@
 
                     <div class="card-body">
                         <ul class="todo-list ui-sortable" data-widget="todo-list">
-                            <li>
-
-                                <span class="handle ui-sortable-handle">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span>
-
-                                <div class="icheck-primary d-inline ml-2">
-                                    <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                                    <label for="todoCheck1"></label>
+                        @foreach($actions as $action)
+                            <li class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <span class="text-item">{{ substr($action->contact->first_name . ' ' . $action->contact->last_name . ' | ' . $action->type . ' - ' . $action->comment, 0, 50) }}@if(strlen($action->contact->first_name . ' ' . $action->contact->last_name . ' | ' . $action->type . ' - ' . $action->comment) > 50)...@endif</span>
                                 </div>
-
-                                <span class="text">Design a nice theme</span>
-
-                                <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
-
-                                <div class="tools">
-                                    <i class="fas fa-edit"></i>
-                                    <i class="fas fa-trash-o"></i>
-                                </div>
-                            </li>
-                            <li class="done">
-                                <span class="handle ui-sortable-handle">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span>
-                                <div class="icheck-primary d-inline ml-2">
-                                    <input type="checkbox" value="" name="todo2" id="todoCheck2" checked="">
-                                    <label for="todoCheck2"></label>
-                                </div>
-                                <span class="text">Make the theme responsive</span>
-                                <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
-                                <div class="tools">
-                                    <i class="fas fa-edit"></i>
-                                    <i class="fas fa-trash-o"></i>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="handle ui-sortable-handle">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span>
-                                <div class="icheck-primary d-inline ml-2">
-                                    <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                                    <label for="todoCheck3"></label>
-                                </div>
-                                <span class="text">Let theme shine like a star</span>
-                                <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
-                                <div class="tools">
-                                    <i class="fas fa-edit"></i>
-                                    <i class="fas fa-trash-o"></i>
+                                @php
+                                    $now = \Carbon\Carbon::now();
+                                    $scheduledAt = $action->scheduled_at ? \Carbon\Carbon::parse($action->scheduled_at) : null;
+                                    $remainingTime = $scheduledAt ? $now->diffInHours($scheduledAt, false) : null;
+                                @endphp
+                                <div class="d-flex align-items-center">
+                                    <small class="badge ml-2 mr-2
+                                        @if($remainingTime !== null)
+                                            @if ($remainingTime < 0)
+                                                badge-danger
+                                            @elseif ($remainingTime <= 30)
+                                                badge-warning
+                                            @elseif ($remainingTime <= 72)
+                                                badge-yellow
+                                            @else
+                                                badge-success
+                                            @endif
+                                        @endif">
+                                        <i class="far fa-clock"></i>
+                                        @if($action->scheduled_at)
+                                            {{ \Carbon\Carbon::parse($action->scheduled_at)->diffForHumans() }}
+                                        @else
+                                            Pas de date prévue
+                                        @endif
+                                    </small>
+                                    <div class="d-inline-block tools">
+                                        <a href="{{ route('actions.edit', $action) }}" class="fas fa-edit mr-1"></a>
+                                        <form action="{{ route('actions.destroy', $action) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="fas fa-trash-o" style="border:none;background:none;"></button>
+                                        </form>
+                                    </div>
                                 </div>
                             </li>
-                            <li>
-                                <span class="handle ui-sortable-handle">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span>
-                                <div class="icheck-primary d-inline ml-2">
-                                    <input type="checkbox" value="" name="todo4" id="todoCheck4">
-                                    <label for="todoCheck4"></label>
-                                </div>
-                                <span class="text">Let theme shine like a star</span>
-                                <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
-                                <div class="tools">
-                                    <i class="fas fa-edit"></i>
-                                    <i class="fas fa-trash-o"></i>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="handle ui-sortable-handle">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span>
-                                <div class="icheck-primary d-inline ml-2">
-                                    <input type="checkbox" value="" name="todo5" id="todoCheck5">
-                                    <label for="todoCheck5"></label>
-                                </div>
-                                <span class="text">Check your messages and notifications</span>
-                                <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
-                                <div class="tools">
-                                    <i class="fas fa-edit"></i>
-                                    <i class="fas fa-trash-o"></i>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="handle ui-sortable-handle">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </span>
-                                <div class="icheck-primary d-inline ml-2">
-                                    <input type="checkbox" value="" name="todo6" id="todoCheck6">
-                                    <label for="todoCheck6"></label>
-                                </div>
-                                <span class="text">Let theme shine like a star</span>
-                                <small class="badge badge-secondary"><i class="far fa-clock"></i> 1 month</small>
-                                <div class="tools">
-                                    <i class="fas fa-edit"></i>
-                                    <i class="fas fa-trash-o"></i>
-                                </div>
-                            </li>
+                        @endforeach
                         </ul>
                     </div>
 
                     <div class="card-footer clearfix">
-                        <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
+                        <a href="{{ route('actions.index') }}" class="small-box-footer">Voir les actions <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -305,6 +245,9 @@
         flex-grow: 1;
         max-width: 100%;
     }
+    /* .todo-list{
+
+    } */
 
 
 </style>
@@ -395,7 +338,6 @@ $.ajax({
                 }
             }
         });
-        console.log(data);
     }
 });
 document.getElementById('currentYear').textContent = new Date().getFullYear();

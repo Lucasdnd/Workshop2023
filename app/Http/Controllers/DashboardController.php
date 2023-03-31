@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Action;
 
 
 class DashboardController extends Controller
@@ -11,6 +11,20 @@ class DashboardController extends Controller
     public function dashboard()
     {
         // Données pour le graphique à secteurs
+        $actions = Action::with('contact')
+        ->orderByRaw("
+            CASE
+                WHEN scheduled_at > date('now') THEN 0
+                ELSE 1
+            END ASC,
+            CASE
+                WHEN scheduled_at < date('now') THEN scheduled_at
+                ELSE date('now') - scheduled_at
+            END DESC
+        ")
+        ->get();
+    
+    
         $leadCount = DB::table('contacts')->where('status', 'lead')->count();
         $deadLeadCount = DB::table('contacts')->where('status', 'dead_lead')->count();
         $prospectCount = DB::table('contacts')->where('status', 'prospect')->count();
@@ -77,6 +91,6 @@ class DashboardController extends Controller
             'prospectsByMonth' => $prospectsByMonth->keyBy('month')
         ];
         
-        return view('home', compact('data', 'barData', 'leadCount', 'deadLeadCount', 'prospectCount', 'clientCount', 'conversionRate'));
+        return view('home', compact('data', 'barData', 'leadCount', 'deadLeadCount', 'prospectCount', 'clientCount', 'conversionRate','actions'));
     }
 }
