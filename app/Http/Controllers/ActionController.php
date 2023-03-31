@@ -13,8 +13,7 @@ class ActionController extends Controller
      */
     public function index()
     {
-        $actions = Action::all();
-
+        $actions = Action::with('contact')->orderByDesc('created_at')->get();
         return view('actions.index', compact('actions'));
     }
 
