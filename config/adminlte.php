@@ -333,6 +333,12 @@ return [
             'url' => 'actions',
             'icon' => 'fas fa-fw fa-handshake',
         ],
+        ['header' => 'companies'],
+        [
+            'text' => 'Entreprises',
+            'url'  => 'companies',
+            'icon' => 'fas fa-fw fa-building',
+        ],
         ['header' => 'users'],
         [
             'text' => 'Utilisateurs',

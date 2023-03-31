@@ -7,9 +7,9 @@
 @section('content')
 <div class="container">
     @if ($errors->has('email'))
-<div class="alert alert-danger" role="alert">
-    L'adresse email est déjà utilisée.
-</div>
+    <div class="alert alert-danger" role="alert">
+        L'adresse email est déjà utilisée.
+    </div>
     @endif
     <h1>Create Contact</h1>
     <form method="POST" action="{{ route('contact.store') }}">
@@ -69,7 +69,33 @@
                 <option value="B2C" {{ old('type') == 'B2C' ? 'selected' : '' }}>B2C</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="company_id">Company</label>
+            <select class="form-control" name="company_id" id="company_id">
+                <option value="">-- Select a company --</option>
+                @foreach ($companies as $company)
+                <option value="{{ $company->id }}" {{ old('company_id') == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
+
+@push('js')
+<script>
+    $(document).ready(function() {
+        $('#company_id').parent().hide();
+
+        $('#type').change(function() {
+            if ($(this).val() == 'B2B') {
+                $('#company_id').parent().show();
+            } else {
+                $('#company_id').parent().hide();
+            }
+        });
+    });
+</script>
+@endpush
+
 @endsection

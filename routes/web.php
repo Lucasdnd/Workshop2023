@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ActionController;
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -70,6 +71,7 @@ Route::get('/clients-by-month', function () {
 })->name('clients-by-month');
 
 Route::resource('actions', ActionController::class);
+Route::resource('companies', CompanyController::class);
 
 Route::fallback(function () {
     return redirect('/');

@@ -18,5 +18,6 @@ return [
     'information'                   => 'Informations',
     'customers'                     => 'GESTION CLIENTS',
     'actions'                       => 'GESTION ACTIONS',
+    'companies'                     => 'GESTION ENTREPRISES',
     'users'                         => 'GESTION UTILISATEURS',
 ];
