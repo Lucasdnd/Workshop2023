@@ -17,5 +17,6 @@ return [
     'warning'                       => 'Avertissement',
     'information'                   => 'Informations',
     'customers'                     => 'GESTION CLIENTS',
+    'actions'                       => 'GESTION ACTIONS',
     'users'                         => 'GESTION UTILISATEURS',
 ];
