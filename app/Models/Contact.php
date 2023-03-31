@@ -10,17 +10,22 @@ class Contact extends Model
     use HasFactory;
 
     protected $fillable = [
-        'first_name', 
-        'last_name', 
-        'email', 
-        'phone', 
-        'address', 
-        'city', 
-        'state', 
-        'zip_code', 
-        'country', 
-        'company_id', 
-        'status', 
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'address',
+        'city',
+        'state',
+        'zip_code',
+        'country',
+        'company_id',
+        'status',
         'type'
     ];
+
+    public function actions()
+    {
+        return $this->hasMany(Action::class);
+    }
 }

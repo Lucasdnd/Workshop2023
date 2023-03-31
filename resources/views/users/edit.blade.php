@@ -2,11 +2,16 @@
 
 @section('title', 'Gestion des utilisateurs - NK informatique')
 
+@section('content_header')
+<div class="container">
+    <h1>Mettre à jour {{ $user->name }}</h1>
+</div>
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Mettre à jour un utilisateur</h1>
             <form action="{{ route('users.update', $user->id) }}" method="POST">
                 @csrf
                 @method('PUT')

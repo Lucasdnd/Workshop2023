@@ -327,6 +327,12 @@ return [
             'url'  => 'contact/clients',
             'icon' => 'fas fa-user-check',
         ],
+        ['header' => 'actions'],
+        [
+            'text' => 'Actions',
+            'url' => 'actions',
+            'icon' => 'fas fa-fw fa-handshake',
+        ],
         ['header' => 'users'],
         [
             'text' => 'Utilisateurs',
