@@ -13,7 +13,18 @@ class ActionController extends Controller
      */
     public function index()
     {
-        $actions = Action::with('contact')->orderByDesc('scheduled_at')->get();
+        $actions = Action::with('contact')
+        ->orderByRaw("
+            CASE
+                WHEN scheduled_at > date('now') THEN 0
+                ELSE 1
+            END ASC,
+            CASE
+                WHEN scheduled_at < date('now') THEN scheduled_at
+                ELSE date('now') - scheduled_at
+            END DESC
+        ")
+        ->get();
         return view('actions.index', compact('actions'));
     }
 
