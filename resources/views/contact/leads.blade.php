@@ -15,10 +15,10 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Company</th>
                 <th>Type</th>
                 <th>Actions</th>
             </tr>
@@ -26,10 +26,10 @@
         <tbody>
             @foreach($contacts as $contact)
             <tr>
-                <td>{{ $contact->id }}</td>
                 <td>{{ $contact->first_name }}</td>
                 <td>{{ $contact->email }}</td>
                 <td>{{ $contact->phone }}</td>
+                <td>{{ $contact->company ? $contact->company->name : '' }}</td>
                 <td>{{ $contact->type }}</td>
                 <td>
                     <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-primary">Edit</a>
