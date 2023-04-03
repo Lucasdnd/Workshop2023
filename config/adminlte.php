@@ -327,6 +327,16 @@ return [
             'url'  => 'contact/clients',
             'icon' => 'fas fa-user-check',
         ],
+        [
+            'text' => 'Exporter les contacts',
+            'url' => 'contact/export-contacts',
+            'icon' => 'fas fa-file-export',
+        ],
+        [
+            'text' => 'Importer les contacts',
+            'url' => 'contact/import',
+            'icon' => 'fas fa-file-import',
+        ],
         ['header' => 'actions'],
         [
             'text' => 'Actions',
