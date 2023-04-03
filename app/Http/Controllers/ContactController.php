@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Exports\ContactsExport;
+use App\Imports\ContactsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ContactController extends Controller
 {
@@ -83,6 +86,37 @@ class ContactController extends Controller
     {
         $contacts = Contact::where('status', 'client')->get();
         return view('contact.clients', compact('contacts'));
+    }
+
+    /**
+     * Export the list of contacts to a CSV file.
+     */
+    public function exportContacts()
+    {
+        return Excel::download(new ContactsExport, 'contacts.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+        ]);
+    }
+
+    /**
+     * Import the list of contacts from a CSV file.
+     */
+    public function importContacts(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt',
+        ]);
+
+        $file = $request->file('file');
+
+        Excel::import(new ContactsImport, $file);
+
+        return redirect()->back()->with('success', 'Contacts imported successfully.');
+    }
+
+    public function showImportForm()
+    {
+        return view('contact.import');
     }
 
     /**
