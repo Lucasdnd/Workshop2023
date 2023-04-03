@@ -12,22 +12,26 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <form action="{{ route('contact.import.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('contact.importContacts') }}" method="post" enctype="multipart/form-data">
                 @csrf
-
                 <div class="form-group">
-                    <label for="file">Fichier CSV</label>
-                    <input type="file" class="form-control-file @error('file') is-invalid @enderror" id="file" name="file">
-
-                    @error('file')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                    <label for="import_file">Import Contacts (CSV):</label>
+                    <input type="file" name="import_file" id="import_file" class="form-control">
                 </div>
-
-                <button type="submit" class="btn btn-primary"> Importer </button>
+                <button type="submit" class="btn btn-primary">Import</button>
             </form>
+
+            @if(session()->has('success'))
+            <div class="alert alert-success mt-2">
+                {{ session()->get('success') }}
+            </div>
+            @endif
+
+            @if(session()->has('error'))
+            <div class="alert alert-danger mt-2">
+                {{ session()->get('error') }}
+            </div>
+            @endif
         </div>
     </div>
 </div>

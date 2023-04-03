@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Exports\ContactsExport;
-use App\Imports\ContactsImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ContactsImport;
 
 class ContactController extends Controller
 {
@@ -104,14 +105,15 @@ class ContactController extends Controller
     public function importContacts(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:csv,txt',
+            'import_file' => 'required|mimes:csv,txt',
         ]);
 
-        $file = $request->file('file');
-
-        Excel::import(new ContactsImport, $file);
-
-        return redirect()->back()->with('success', 'Contacts imported successfully.');
+        try {
+            Excel::import(new ContactsImport, $request->file('import_file'));
+            return redirect()->back()->with('success', 'Contacts imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error importing contacts: ' . $e->getMessage());
+        }
     }
 
     public function showImportForm()
