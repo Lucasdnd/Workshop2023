@@ -95,3 +95,19 @@
     </div>
 </div>
 @stop
+
+@push('js')
+<script>
+    $(document).ready(function() {
+        $('#company_id').parent().hide();
+
+        $('#type').change(function() {
+            if ($(this).val() == 'B2B') {
+                $('#company_id').parent().show();
+            } else {
+                $('#company_id').parent().hide();
+            }
+        });
+    });
+</script>
+@endpush

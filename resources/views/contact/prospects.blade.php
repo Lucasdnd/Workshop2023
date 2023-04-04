@@ -1,7 +1,7 @@
 <!-- Vue Blade -->
 @extends('adminlte::page')
 
-@section('title', 'Prospets - NK informatique')
+@section('title', 'Leads - NK informatique')
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
@@ -32,11 +32,15 @@
                 <td>{{ $contact->company ? $contact->company->name : '' }}</td>
                 <td>{{ $contact->type }}</td>
                 <td>
-                    <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="mailto:{{ $contact->email }}" target="_blank" onclick="updateContactStatus('{{ route('update-contact-status', ['id' => $contact->id, 'status' => 'prospect']) }}')" class="btn btn-outline-success"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:{{ $contact->phone }}" onclick="updateContactStatus('{{ route('update-contact-status', ['id' => $contact->id, 'status' => 'prospect']) }}')" class="btn btn-outline-success"><i class="fas fa-phone"></i></a>
+                    <a href="#" onclick="validateSale('{{ route('update-contact-status', ['id' => $contact->id, 'status' => 'client']) }}'); location.reload();" class="btn btn-outline-success mr-4"><i class="fas fa-shopping-cart"></i></a>
+
+                    <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
                     <form action="{{ route('contact.destroy', $contact->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this contact?')">Delete</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this contact?')"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>
@@ -44,4 +48,33 @@
         </tbody>
     </table>
 </div>
+@endsection
+@section('js')
+<script>
+function updateContactStatus(url) {
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        credentials: 'same-origin'
+    }).then(function(response) {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response;
+    }).catch(function(error) {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
+function validateSale(url) {
+    if (confirm('Etes vous sûr de vouloir valider une vente avec ce client ?')) {
+        updateContactStatus(url);
+    }
+}
+
+</script>
 @endsection

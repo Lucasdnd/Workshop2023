@@ -1,7 +1,7 @@
 <!-- Vue Blade -->
 @extends('adminlte::page')
 
-@section('title', 'Clients - NK informatique')
+@section('title', 'Leads - NK informatique')
 
 @section('content_header')
 <div class="d-flex justify-content-between align-items-center">
@@ -32,11 +32,14 @@
                 <td>{{ $contact->company ? $contact->company->name : '' }}</td>
                 <td>{{ $contact->type }}</td>
                 <td>
-                    <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="mailto:{{ $contact->email }}" class="btn btn-outline-success"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:{{ $contact->phone }}" class="btn btn-outline-success mr-4"><i class="fas fa-phone"></i></a>
+
+                    <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
                     <form action="{{ route('contact.destroy', $contact->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this contact?')">Delete</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this contact?')"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>

@@ -51,14 +51,14 @@ Route::get('/clients-by-month', function () {
 
     $leadsByMonth = DB::table('contacts')
         ->select(DB::raw('strftime("%m", created_at) as month'), DB::raw('COUNT(*) as count'))
-        ->where('status', 'lead')
+        ->whereIn('status', ['lead', 'dead_lead'])
         ->whereYear('created_at', '=', $currentYear)
         ->groupBy(DB::raw('strftime("%m", created_at)'))
         ->get();
 
     $prospectsByMonth = DB::table('contacts')
         ->select(DB::raw('strftime("%m", created_at) as month'), DB::raw('COUNT(*) as count'))
-        ->where('status', 'prospect')
+        ->whereIn('status', ['prospect', 'dead_prospect'])
         ->whereYear('created_at', '=', $currentYear)
         ->groupBy(DB::raw('strftime("%m", created_at)'))
         ->get();
@@ -69,6 +69,8 @@ Route::get('/clients-by-month', function () {
         'prospects' => $prospectsByMonth
     ]);
 })->name('clients-by-month');
+Route::get('/update-contact-status/{id}/{status}', [ContactController::class, 'updateStatus'])->name('update-contact-status');
+
 
 Route::resource('actions', ActionController::class);
 Route::resource('companies', CompanyController::class);

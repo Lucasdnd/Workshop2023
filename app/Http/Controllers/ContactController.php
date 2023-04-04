@@ -173,4 +173,20 @@ class ContactController extends Controller
 
         return redirect()->route('contact.' . $redirectRoute)->with('success', 'Contact deleted successfully.');
     }
+
+    public function updateStatus($id, $type)
+    {
+        $contact = Contact::find($id);
+        if ($contact) {
+            if ($type === 'client') {
+                $contact->status = 'client';
+            } else {
+                $contact->status = 'prospect';
+            }
+            $contact->save();
+        }
+    
+        return redirect()->back();
+    }
+    
 }

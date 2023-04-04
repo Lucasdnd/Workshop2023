@@ -12,7 +12,7 @@ class DashboardController extends Controller
     {
         // Données pour le graphique à secteurs
         $actions = Action::with('contact')
-        ->orderByRaw("
+            ->orderByRaw("
             CASE
                 WHEN scheduled_at > date('now') THEN 0
                 ELSE 1
@@ -22,9 +22,9 @@ class DashboardController extends Controller
                 ELSE date('now') - scheduled_at
             END DESC
         ")
-        ->get();
-    
-    
+            ->get();
+
+
         $leadCount = DB::table('contacts')->where('status', 'lead')->count();
         $deadLeadCount = DB::table('contacts')->where('status', 'dead_lead')->count();
         $prospectCount = DB::table('contacts')->where('status', 'prospect')->count();
@@ -49,14 +49,14 @@ class DashboardController extends Controller
 
         $leadsByMonth = DB::table('contacts')
             ->select(DB::raw('strftime("%m", created_at) as month'), DB::raw('COUNT(*) as lead_count'))
-            ->where('status', 'lead')
+            ->whereIn('status', ['lead', 'dead_lead'])
             ->whereYear('created_at', '=', $currentYear)
             ->groupBy(DB::raw('strftime("%m", created_at)'))
             ->get();
 
         $prospectsByMonth = DB::table('contacts')
             ->select(DB::raw('strftime("%m", created_at) as month'), DB::raw('COUNT(*) as prospect_count'))
-            ->where('status', 'prospect')
+            ->whereIn('status', ['prospect', 'dead_prospect'])
             ->whereYear('created_at', '=', $currentYear)
             ->groupBy(DB::raw('strftime("%m", created_at)'))
             ->get();
@@ -90,7 +90,7 @@ class DashboardController extends Controller
             'leadsByMonth' => $leadsByMonth->keyBy('month'),
             'prospectsByMonth' => $prospectsByMonth->keyBy('month')
         ];
-        
-        return view('home', compact('data', 'barData', 'leadCount', 'deadLeadCount', 'prospectCount', 'clientCount', 'conversionRate','actions'));
+
+        return view('home', compact('data', 'barData', 'leadCount', 'deadLeadCount', 'prospectCount', 'clientCount', 'conversionRate', 'actions'));
     }
 }

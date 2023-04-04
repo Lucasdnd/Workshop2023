@@ -37,7 +37,7 @@
                     Autre
                     @endif
                 </td>
-                <td>{{ $action->comment }}</td>
+                <td>{{ substr($action->comment, 0, 50) }}@if(strlen($action->comment) > 50)...@endif</td>
                 <td>{{ \Carbon\Carbon::parse($action->scheduled_at)->format('d/m/Y H:i') }}</td>
                 <td>{{ $action->contact->first_name }} {{ $action->contact->last_name }}</td>
                 <td>
