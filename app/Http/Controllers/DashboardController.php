@@ -25,7 +25,6 @@ class DashboardController extends Controller
         ")
         ->paginate(5);
 
-
         $leadCount = DB::table('contacts')->where('status', 'lead')->count();
         $deadLeadCount = DB::table('contacts')->where('status', 'dead_lead')->count();
         $prospectCount = DB::table('contacts')->where('status', 'prospect')->count();

@@ -240,9 +240,6 @@
         max-width: 100%;
     }
 
-    /* .todo-list{
-
-    } */
 </style>
 <script>
 var donutData = {
@@ -251,7 +248,6 @@ var donutData = {
         backgroundColor: ['#17A2B8', '#DC3545', '#FFC107'],
     }],
 
-    // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
         'Leads',
         'Prospects',
@@ -264,8 +260,6 @@ var donutOptions = {
     responsive : true,
 };
 
-//Create pie or douhnut chart
-// You can switch between pie and douhnut using the method below.
 var donutChart = new Chart(document.getElementById('donutChart'), {
     type: 'doughnut',
     data: donutData,

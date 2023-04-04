@@ -14,6 +14,17 @@
                 {{-- Configured sidebar links --}}
                 @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
             </ul>
+            @if (Auth::user()->role == "Admin")
+                <ul class="nav nav-pills nav-sidebar flex-column {{ config('adminlte.classes_sidebar_nav', '') }}" data-widget="treeview" role="menu">
+                    <li class="nav-header">UTILISATEURS</li>
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link">
+                            <i class="fas fa-users-cog nav-icon"></i>
+                            <p>Utilisateurs</p>
+                        </a>
+                    </li>
+                </ul>
+            @endif
         </nav>
     </div>
 </aside>

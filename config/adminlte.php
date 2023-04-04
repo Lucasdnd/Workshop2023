@@ -349,12 +349,6 @@ return [
             'url'  => 'companies',
             'icon' => 'fas fa-fw fa-building',
         ],
-        ['header' => 'users'],
-        [
-            'text' => 'Utilisateurs',
-            'url'  => 'users',
-            'icon' => 'fas fa-users-cog',
-        ],
     ],
 
     /*
