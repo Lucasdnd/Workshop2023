@@ -327,6 +327,7 @@ return [
             'url'  => 'contact/clients',
             'icon' => 'fas fa-user-check',
         ],
+        ['header' => 'import'],
         [
             'text' => 'Exporter les contacts',
             'url' => 'contact/export-contacts',
@@ -348,12 +349,6 @@ return [
             'text' => 'Entreprises',
             'url'  => 'companies',
             'icon' => 'fas fa-fw fa-building',
-        ],
-        ['header' => 'users'],
-        [
-            'text' => 'Utilisateurs',
-            'url'  => 'users',
-            'icon' => 'fas fa-users-cog',
         ],
     ],
 

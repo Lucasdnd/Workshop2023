@@ -14,7 +14,7 @@ class ActionController extends Controller
     public function index()
     {
         $actions = Action::with('contact')
-        ->orderByRaw("
+            ->orderByRaw("
             CASE
                 WHEN scheduled_at > date('now') THEN 0
                 ELSE 1
@@ -24,7 +24,7 @@ class ActionController extends Controller
                 ELSE date('now') - scheduled_at
             END DESC
         ")
-        ->get();
+            ->get();
         return view('actions.index', compact('actions'));
     }
 
@@ -91,10 +91,19 @@ class ActionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Action $action)
+    public function destroy($id, Request $request)
     {
+        $action = Action::findOrFail($id);
         $action->delete();
 
-        return redirect()->route('actions.index');
+        if ($request->input('source') === 'contact') {
+            if ($action) {
+                return redirect()->route('contact.show', $action->contact_id)->with('success', 'Action supprimée avec succès.');
+            } else {
+                return redirect()->route('contacts.index')->with('error', 'Impossible de trouver l\'action à supprimer.');
+            }
+        } else {
+            return redirect()->route('actions.index')->with('success', 'Action supprimée avec succès.');
+        }        
     }
 }

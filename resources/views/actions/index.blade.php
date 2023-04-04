@@ -3,12 +3,13 @@
 @section('title', 'Actions - NK informatique')
 
 @section('content_header')
+
 <div class="container">
     <h1>Actions</h1>
 </div>
 @stop
-
 @section('content')
+
 <div class="container">
     <a href="{{ route('actions.create') }}" class="btn btn-primary mb-3">Créer une action</a>
     <table class="table">
@@ -41,12 +42,13 @@
                 <td>{{ \Carbon\Carbon::parse($action->scheduled_at)->format('d/m/Y H:i') }}</td>
                 <td>{{ $action->contact->first_name }} {{ $action->contact->last_name }}</td>
                 <td>
-                    <a href="{{ route('actions.show', $action->id) }}" class="btn btn-info">Voir</a>
-                    <a href="{{ route('actions.edit', $action->id) }}" class="btn btn-primary">Mettre à jour</a>
+                    <button type="submit" class="btn btn-outline-success mr-4"><i class="fa fa-check"></i></button>
+                    <a href="{{ route('actions.show', $action->id) }}" class="btn btn-info" title="Voir"><i class="fas fa-eye"></i></a>
+                    <a href="{{ route('actions.edit', $action->id) }}" class="btn btn-primary" title="Mettre à jour"><i class="fas fa-pencil-alt"></i></a>
                     <form action="{{ route('actions.destroy', $action->id) }}" method="POST" class="d-inline-block">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette action ?')">Supprimer</button>
+                        <button type="submit" class="btn btn-danger" title="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette action ?')"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>
@@ -55,3 +57,11 @@
     </table>
 </div>
 @endsection
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+@endsection
+
+
+
+
+

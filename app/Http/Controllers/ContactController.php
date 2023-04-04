@@ -221,8 +221,15 @@ class ContactController extends Controller
             }
             $contact->save();
         }
-    
+
         return redirect()->back();
     }
-    
+
+    public function show($id)
+    {
+        $contact = Contact::findOrFail($id);
+        $actions = $contact->actions;
+
+        return view('contact.show', compact('contact', 'actions'));
+    }
 }
