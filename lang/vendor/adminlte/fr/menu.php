@@ -17,6 +17,7 @@ return [
     'warning'                       => 'Avertissement',
     'information'                   => 'Informations',
     'customers'                     => 'GESTION CLIENTS',
+    'import'                        => 'GESTION IMPORT/EXPORT',
     'actions'                       => 'GESTION ACTIONS',
     'companies'                     => 'GESTION ENTREPRISES',
     'users'                         => 'GESTION UTILISATEURS',

@@ -36,6 +36,7 @@
                     <a href="tel:{{ $contact->phone }}" onclick="updateContactStatus('{{ route('update-contact-status', ['id' => $contact->id, 'status' => 'prospect']) }}')" class="btn btn-outline-success"><i class="fas fa-phone"></i></a>
                     <a href="#" onclick="validateSale('{{ route('update-contact-status', ['id' => $contact->id, 'status' => 'client']) }}'); location.reload();" class="btn btn-outline-success mr-4"><i class="fas fa-shopping-cart"></i></a>
 
+                    <a href="{{ route('contact.show', $contact->id) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
                     <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
                     <form action="{{ route('contact.destroy', $contact->id) }}" method="POST" style="display:inline;">
                         @csrf

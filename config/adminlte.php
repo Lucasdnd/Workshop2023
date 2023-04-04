@@ -327,6 +327,7 @@ return [
             'url'  => 'contact/clients',
             'icon' => 'fas fa-user-check',
         ],
+        ['header' => 'import'],
         [
             'text' => 'Exporter les contacts',
             'url' => 'contact/export-contacts',
