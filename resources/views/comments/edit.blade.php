@@ -9,14 +9,15 @@
 @stop
 
 @section('content')
-<h1>Edit Comment</h1>
-<form action="{{ route('actions.comments.update', [$action->id, $comment->id]) }}" method="POST">
-    @csrf
-    @method('PUT')
-    <div>
-        <label for="comment">Comment:</label>
-        <textarea name="comment" id="comment" required>{{ old('comment', $comment->comment) }}</textarea>
-    </div>
-    <button type="submit">Update Comment</button>
-</form>
+<div class="container">
+    <form action="{{ route('actions.comments.update', [$action->id, $comment->id]) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="form-group">
+            <label for="comment">Commentaire :</label>
+            <textarea name="comment" id="comment" required class="form-control">{{ old('comment', $comment->comment) }}</textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Modifier</button>
+    </form>
+</div>
 @endsection

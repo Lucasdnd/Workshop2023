@@ -9,13 +9,12 @@
 @stop
 
 @section('content')
-<h1>Add Comment</h1>
 <form action="{{ route('actions.comments.store', $action->id) }}" method="POST">
     @csrf
     <div>
-        <label for="comment">Comment:</label>
+        <label for="comment">Commentaire :</label>
         <textarea name="comment" id="comment" required>{{ old('comment') }}</textarea>
     </div>
-    <button type="submit">Add Comment</button>
+    <button type="submit">Ajouter le commentaire</button>
 </form>
 @endsection

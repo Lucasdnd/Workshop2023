@@ -62,15 +62,17 @@
                 <div class="timeline-item">
                     <span class="time"><i class="fas fa-clock"></i> {{ $comment->created_at->format('d/m/Y à H:i') }}</span>
                     <h3 class="timeline-header">{{ $comment->user->name }}</h3>
-                    <div class="timeline-body d-inline-block">
+                    <div class="timeline-body p-4">
                         {{ $comment->comment }}
                         @if ($comment->canBeEditedOrDeletedByUser(Auth::user()))
-                        <a href="{{ route('actions.comments.edit', [$action->id, $comment->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                        <form action="{{ route('actions.comments.destroy', [$action->id, $comment->id]) }}" method="POST" class="d-inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this comment?')"><i class="fas fa-trash-alt"></i></button>
-                        </form>
+                        <div class="float-right">
+                            <a href="{{ route('actions.comments.edit', [$action->id, $comment->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                            <form action="{{ route('actions.comments.destroy', [$action->id, $comment->id]) }}" method="POST" class="d-inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </div>
                         @endif
                     </div>
                 </div>
@@ -79,7 +81,7 @@
             <div>Aucun commentaire à afficher</div>
             @endforelse
         </div>
-        <a href="{{ route('actions.comments.create', $action->id) }}" class="btn btn-success mb-2">Add Comment</a>
+        <a href="{{ route('actions.comments.create', $action->id) }}" class="btn btn-success mb-2">Ajouter un commentaire</a>
     </div>
 </div>
 @endsection
