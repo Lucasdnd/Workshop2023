@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Action;
+use Illuminate\Pagination\Paginator;
 
 
 class DashboardController extends Controller
@@ -12,7 +13,7 @@ class DashboardController extends Controller
     {
         // Données pour le graphique à secteurs
         $actions = Action::with('contact')
-            ->orderByRaw("
+        ->orderByRaw("
             CASE
                 WHEN scheduled_at > date('now') THEN 0
                 ELSE 1
@@ -22,7 +23,7 @@ class DashboardController extends Controller
                 ELSE date('now') - scheduled_at
             END DESC
         ")
-            ->get();
+        ->paginate(5);
 
 
         $leadCount = DB::table('contacts')->where('status', 'lead')->count();

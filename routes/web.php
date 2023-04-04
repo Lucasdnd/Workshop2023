@@ -43,6 +43,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::get('/contact/export-contacts', [ContactController::class, 'exportContacts'])->name('contact.exportContacts');
 Route::get('/contact/import', [ContactController::class, 'showImportForm'])->name('contact.showImportForm');
 Route::post('/contact/import-contacts', [ContactController::class, 'importContacts'])->name('contact.importContacts');
+Route::get('/contacts/{id}', [ContactController::class, 'show'])->name('contact.show');
 Route::get('/clients-by-month', function () {
     $currentYear = Carbon::now()->year;
     $clientsByMonth = DB::table('contacts')

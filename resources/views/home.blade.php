@@ -98,46 +98,40 @@
                             To Do List
                         </h3>
                         <div class="card-tools">
-                            <ul class="pagination pagination-sm">
-                                <li class="page-item"><a href="#" class="page-link">«</a></li>
-                                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                <li class="page-item"><a href="#" class="page-link">»</a></li>
-                            </ul>
+                            {{ $actions->links('vendor.pagination.bootstrap-4') }}
                         </div>
                     </div>
 
                     <div class="card-body">
                         <ul class="todo-list ui-sortable" data-widget="todo-list">
-                        @foreach($actions as $action)
+                            @foreach($actions as $action)
                             <li class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
                                     <span class="text-item">{{ substr($action->contact->first_name . ' ' . $action->contact->last_name . ' | ' . $action->type . ' - ' . $action->comment, 0, 50) }}@if(strlen($action->contact->first_name . ' ' . $action->contact->last_name . ' | ' . $action->type . ' - ' . $action->comment) > 50)...@endif</span>
                                 </div>
                                 @php
-                                    $now = \Carbon\Carbon::now();
-                                    $scheduledAt = $action->scheduled_at ? \Carbon\Carbon::parse($action->scheduled_at) : null;
-                                    $remainingTime = $scheduledAt ? $now->diffInHours($scheduledAt, false) : null;
+                                $now = \Carbon\Carbon::now();
+                                $scheduledAt = $action->scheduled_at ? \Carbon\Carbon::parse($action->scheduled_at) : null;
+                                $remainingTime = $scheduledAt ? $now->diffInHours($scheduledAt, false) : null;
                                 @endphp
                                 <div class="d-flex align-items-center">
                                     <small class="badge ml-2 mr-2
-                                        @if($remainingTime !== null)
-                                            @if ($remainingTime < 0)
-                                                badge-danger
-                                            @elseif ($remainingTime <= 30)
-                                                badge-warning
-                                            @elseif ($remainingTime <= 72)
-                                                badge-yellow
-                                            @else
-                                                badge-success
-                                            @endif
-                                        @endif">
+                                            @if($remainingTime !== null)
+                                                @if ($remainingTime < 0)
+                                                    badge-danger
+                                                @elseif ($remainingTime <= 30)
+                                                    badge-warning
+                                                @elseif ($remainingTime <= 72)
+                                                    badge-yellow
+                                                @else
+                                                    badge-success
+                                                @endif
+                                            @endif">
                                         <i class="far fa-clock"></i>
                                         @if($action->scheduled_at)
-                                            {{ \Carbon\Carbon::parse($action->scheduled_at)->diffForHumans() }}
+                                        {{ \Carbon\Carbon::parse($action->scheduled_at)->diffForHumans() }}
                                         @else
-                                            Pas de date prévue
+                                        Pas de date prévue
                                         @endif
                                     </small>
                                     <div class="d-inline-block tools">
@@ -150,7 +144,7 @@
                                     </div>
                                 </div>
                             </li>
-                        @endforeach
+                            @endforeach
                         </ul>
                     </div>
 
@@ -245,11 +239,10 @@
         flex-grow: 1;
         max-width: 100%;
     }
+
     /* .todo-list{
 
     } */
-
-
 </style>
 <script>
 var donutData = {
@@ -306,26 +299,27 @@ $.ajax({
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [
                 {
-                    label: 'Clients',
-                    data: clientData,
+                    label: 'Leads',
+                    data: leadData,
                     backgroundColor: 'rgba(23, 162, 184, 1)',
                     borderColor: 'rgba(15, 105, 119, 1)',
                     borderWidth: 2
                 },
                 {
-                    label: 'Leads',
-                    data: leadData,
+                    label: 'Prospects',
+                    data: prospectData,
                     backgroundColor: 'rgba(220, 53, 69, 1)',
                     borderColor: 'rgba(155, 38, 50, 1)',
                     borderWidth: 2
                 },
                 {
-                    label: 'Prospects',
-                    data: prospectData,
+                    label: 'Clients',
+                    data: clientData,
                     backgroundColor: 'rgba(255, 193, 7, 1)',
                     borderColor: 'rgba(226, 171, 6, 1)',
                     borderWidth: 2
-                }]
+                }
+            ]
             },
             options: {
                 scales: {
@@ -342,4 +336,5 @@ $.ajax({
 });
 document.getElementById('currentYear').textContent = new Date().getFullYear();
 </script>
+
 @stop
