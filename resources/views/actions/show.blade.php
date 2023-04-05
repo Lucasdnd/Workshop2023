@@ -14,6 +14,12 @@
     @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+    @if ($action->is_done)
+    <div class="alert alert-success">Cette action a été marquée comme réalisée.</div>
+    @else
+    <div class="alert alert-warning">Cette action n'a pas encore été réalisée.</div>
+    @endif
+
     <table class="table">
         <tbody>
             <tr>

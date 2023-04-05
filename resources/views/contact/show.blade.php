@@ -78,6 +78,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Type</th>
                     <th>Commentaire</th>
                     <th>Date planifiée</th>
@@ -87,6 +88,11 @@
             <tbody>
                 @foreach ($actions as $action)
                 <tr>
+                    <td class="text-center">
+                        @if ($action->is_done)
+                        <i class="fas fa-check"></i>
+                        @endif
+                    </td>
                     <td>
                         @if ($action->type === 'call')
                         Appel
