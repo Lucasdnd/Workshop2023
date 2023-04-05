@@ -63,6 +63,17 @@ class ActionController extends Controller
     }
 
     /**
+     * Mark an action as done
+     */
+    public function markAsDone(Action $action)
+    {
+        $action->update(['is_done' => !$action->is_done]);
+
+        $message = $action->is_done ? 'L\'action a été marquée comme réalisée.' : 'L\'action a été marquée comme non réalisée.';
+        return redirect()->back()->with('success', $message);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Action $action)
@@ -104,6 +115,6 @@ class ActionController extends Controller
             }
         } else {
             return redirect()->route('actions.index')->with('success', 'Action supprimée avec succès.');
-        }        
+        }
     }
 }

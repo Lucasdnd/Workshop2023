@@ -10,7 +10,7 @@ class Action extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type', 'comment', 'scheduled_at', 'contact_id'];
+    protected $fillable = ['type', 'comment', 'scheduled_at', 'contact_id', 'is_done'];
     protected $dates = ['scheduled_at'];
 
 

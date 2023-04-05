@@ -78,6 +78,7 @@ Route::get('/update-contact-status/{id}/{status}', [ContactController::class, 'u
 
 
 Route::resource('actions', ActionController::class);
+Route::put('/actions/{action}/mark-as-done', [ActionController::class, 'markAsDone'])->name('actions.mark-as-done');
 Route::resource('companies', CompanyController::class);
 Route::resource('actions.comments', ContactActionCommentController::class);
 

@@ -42,7 +42,11 @@
                 <td>{{ \Carbon\Carbon::parse($action->scheduled_at)->format('d/m/Y H:i') }}</td>
                 <td>{{ $action->contact->first_name }} {{ $action->contact->last_name }}</td>
                 <td>
-                    <button type="submit" class="btn btn-outline-success mr-4"><i class="fa fa-check"></i></button>
+                    <form class="d-inline-block" action="{{ route('actions.mark-as-done', $action) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn {{ $action->is_done ? 'btn-success' : 'btn-outline-success' }} mr-4"><i class="fa fa-check"></i></button>
+                    </form>
                     <a href="{{ route('actions.show', $action->id) }}" class="btn btn-info" title="Voir"><i class="fas fa-eye"></i></a>
                     <a href="{{ route('actions.edit', $action->id) }}" class="btn btn-primary" title="Mettre à jour"><i class="fas fa-pencil-alt"></i></a>
                     <form action="{{ route('actions.destroy', $action->id) }}" method="POST" class="d-inline-block">
@@ -60,8 +64,3 @@
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 @endsection
-
-
-
-
-
