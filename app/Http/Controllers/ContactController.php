@@ -104,9 +104,13 @@ class ContactController extends Controller
      */
     public function importContacts(Request $request)
     {
-        $request->validate([
-            'import_file' => 'required|mimes:csv,txt',
-        ]);
+        try {
+            $request->validate([
+                'import_file' => 'required|mimes:csv,txt',
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Invalid file type. Only CSV or TXT files are allowed (' . $e->getMessage() . ')');
+        }
 
         try {
             Excel::import(new ContactsImport, $request->file('import_file'));
