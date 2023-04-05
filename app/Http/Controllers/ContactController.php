@@ -109,7 +109,7 @@ class ContactController extends Controller
                 'import_file' => 'required|mimes:csv,txt',
             ]);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Type de fichier invalide. Seulement les fichiers CSV et TXT sont importables. (' . $e->getMessage() . ')');
+            return redirect()->back()->with('error', 'Type de fichier invalide. Seul les fichiers CSV et TXT sont importables. (' . $e->getMessage() . ')');
         }
 
         try {
