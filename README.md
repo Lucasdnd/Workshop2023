@@ -20,7 +20,7 @@ Si vous souhaitez installer le projet sur votre machine, veuillez suivre les ét
 1. Cloner le projet https://github.com/Lucasdnd/Workshop2023.git
 2. Installer les dépendances avec `composer install` et `npm install `
 3. Activer ensuite l'extension `;extension=pdo_sqlite` en enlevant le ';' dans le fichier php.init
-4. Excecuter les migrations avec `php artisan migrate`
+4. Executer les migrations avec `php artisan migrate`
 5. Puis pour lancer le serveur faite un `php artisan serve`
 
  Vous voila avec le projet fonctionnel et prêt à être utilisé ! 🌐
