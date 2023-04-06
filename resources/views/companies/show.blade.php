@@ -3,6 +3,9 @@
 @section('title', 'Entreprises - NK informatique')
 
 @section('content_header')
+<div class="form-group">
+    <a href="{{ route('actions.index') }}" class="btn btn-secondary">Retour</a>
+</div>
 <div class="container">
     <h1>Détails de {{ $company->name }}</h1>
 </div>

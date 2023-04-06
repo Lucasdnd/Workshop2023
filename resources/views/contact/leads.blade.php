@@ -4,21 +4,22 @@
 @section('title', 'Leads - NK informatique')
 
 @section('content_header')
-<div class="d-flex justify-content-between align-items-center">
-    <a href="{{ route('contact.create') }}" class="btn btn-primary">Create Contact</a>
+<div class="container">
+    <h1>Leads</h1>
 </div>
 @endsection
 
 @section('content')
 <div class="container">
-    <h1>{{ ucfirst(request()->segment(1)) }}</h1>
+<a href="{{ route('contact.create') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Créer un nouveau contact</a>
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Nom</th>
+                <th>Prénom</th>
                 <th>Email</th>
-                <th>Phone</th>
-                <th>Company</th>
+                <th>Téléphone</th>
+                <th>Entreprise</th>
                 <th>Type</th>
                 <th>Actions</th>
             </tr>
@@ -27,6 +28,7 @@
             @foreach($contacts as $contact)
             <tr>
                 <td>{{ $contact->first_name }}</td>
+                <td>{{ $contact->last_name }}</td>
                 <td>{{ $contact->email }}</td>
                 <td>{{ $contact->phone }}</td>
                 <td>{{ $contact->company ? $contact->company->name : '' }}</td>
@@ -40,7 +42,7 @@
                     <form action="{{ route('contact.destroy', $contact->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this contact?')"><i class="fas fa-trash-alt"></i></button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Etes vous sur de vouloir supprimer ce contact ?')"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>

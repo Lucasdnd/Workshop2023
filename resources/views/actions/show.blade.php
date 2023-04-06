@@ -3,6 +3,9 @@
 @section('title', 'Actions - NK informatique')
 
 @section('content_header')
+<div class="form-group">
+    <a href="{{ route('actions.index') }}" class="btn btn-secondary">Retour</a>
+</div>
 <div class="container">
     <h1>Détails de l'action</h1>
 </div>
@@ -61,8 +64,8 @@
 
     <div class="mt-4">
         <h3 class="mb-4">Commentaires</h3>
+        @forelse ($action->comments ?? [] as $comment)
         <div class="timeline timeline-card">
-            @forelse ($action->comments ?? [] as $comment)
             <div>
                 <i class="fas fa-comment bg-blue"></i>
                 <div class="timeline-item">
@@ -83,10 +86,11 @@
                     </div>
                 </div>
             </div>
-            @empty
-            <div>Aucun commentaire à afficher</div>
-            @endforelse
         </div>
+        @empty
+        <div class="mb-3">Aucun commentaire à afficher</div>
+        @endforelse
+
         <a href="{{ route('actions.comments.create', $action->id) }}" class="btn btn-success mb-2">Ajouter un commentaire</a>
     </div>
 </div>

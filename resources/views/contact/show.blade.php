@@ -3,6 +3,9 @@
 @section('title', 'Contacts - NK informatique')
 
 @section('content_header')
+<div class="form-group">
+    <a href="{{ URL::previous() }}" class="btn btn-secondary">Retour</a>
+</div>
 
 <div class="container">
     <h1>Détails du contact</h1>
@@ -78,21 +81,16 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th></th>
                     <th>Type</th>
                     <th>Commentaire</th>
                     <th>Date planifiée</th>
+                    <th>Réalisée</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($actions as $action)
                 <tr>
-                    <td class="text-center">
-                        @if ($action->is_done)
-                        <i class="fas fa-check"></i>
-                        @endif
-                    </td>
                     <td>
                         @if ($action->type === 'call')
                         Appel
@@ -108,13 +106,18 @@
                     </td>
                     <td>{{ substr($action->comment, 0, 50) }}@if(strlen($action->comment) > 50)...@endif</td>
                     <td>{{ \Carbon\Carbon::parse($action->scheduled_at)->format('d/m/Y H:i') }}</td>
+                    <td class="text-center">
+                        @if ($action->is_done)
+                        <i class="fas fa-check"></i>
+                        @endif
+                    </td>
                     <td>
-                        <a href="{{ route('actions.show', $action->id) }}" class="btn btn-info">Voir</a>
-                        <a href="{{ route('actions.edit', $action->id) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ route('actions.show', $action->id) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                        <a href="{{ route('actions.edit', $action->id) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
                         <form action="{{ route('actions.destroy', ['action' => $action->id, 'source' => 'contact']) }}" method="POST" class="d-inline-block">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette action ?')">Supprimer</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette action ?')"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>

@@ -89,6 +89,6 @@ class ContactActionCommentController extends Controller
 
         $comment->delete();
 
-        return redirect()->route('actions.show', $action->id)->with('success', 'Le commentaire à été supprimé!');
+        return redirect()->route('actions.show', $action->id)->with('success', 'Le commentaire a été supprimé!');
     }
 }

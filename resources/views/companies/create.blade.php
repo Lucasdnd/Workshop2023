@@ -54,7 +54,10 @@
             <input type="text" id="country" name="country" class="form-control" value="{{ old('country') }}">
         </div>
 
-        <button type="submit" class="btn btn-primary">Créer</button>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Créer</button>
+            <a href="{{ route('companies.index') }}" class="btn btn-secondary">Retour</a>
+        </div>
     </form>
 </div>
 @endsection

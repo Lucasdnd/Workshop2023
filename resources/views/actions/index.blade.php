@@ -11,7 +11,7 @@
 @section('content')
 
 <div class="container">
-    <a href="{{ route('actions.create') }}" class="btn btn-primary mb-3">Créer une action</a>
+    <a href="{{ route('actions.create') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Créer une action</a>
     <table class="table">
         <thead>
             <tr>

@@ -300,17 +300,6 @@ return [
             'url'  => '',
             'icon' => 'fas fa-chart-line',
         ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
         ['header' => 'customers'],
         [
             'text' => 'Leads',

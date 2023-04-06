@@ -82,7 +82,7 @@
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="far fa-chart-bar"></i>
-                            Nombre de clients par mois (en <span id="currentYear">2023</span>)
+                            Nombre de contacts par mois (en <span id="currentYear">2023</span>)
                         </h3>
                     </div>
                     <div class="card-body">
@@ -95,7 +95,7 @@
                     <div class="card-header ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">
                             <i class="ion ion-clipboard mr-1"></i>
-                            To Do List
+                            Tâches
                         </h3>
                         <div class="card-tools">
                             {{ $actions->links('vendor.pagination.bootstrap-4') }}
@@ -103,12 +103,25 @@
                     </div>
 
                     <div class="card-body">
-                        <ul class="todo-list ui-sortable" data-widget="todo-list">
+                        <ul class="todo-list ui-sortable" data-widget="todo-list" style="overflow: auto; max-height: 325px;">
                             @foreach($actions as $action)
+                            @if (!$action->is_done)
                             <li class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <span class="text-item">{{ substr($action->contact->first_name . ' ' . $action->contact->last_name . ' | ' . $action->type . ' - ' . $action->comment, 0, 50) }}@if(strlen($action->contact->first_name . ' ' . $action->contact->last_name . ' | ' . $action->type . ' - ' . $action->comment) > 50)...@endif</span>
-                                </div>
+                            <div class="d-flex align-items-center">
+                                @if ($action->type === 'call')
+                                    <?php $type = "Appel"; ?>
+                                @elseif ($action->type === 'email')
+                                    <?php $type = "Email"; ?>
+                                @elseif ($action->type === 'meeting')
+                                    <?php $type = "Réunion"; ?>
+                                @elseif ($action->type === 'note')
+                                    <?php $type = "Note"; ?>
+                                @elseif ($action->type === 'other')
+                                    <?php $type = "Autre"; ?>
+                                @endif
+                                <span class="text-item">{{ substr($action->contact->first_name . ' ' . $action->contact->last_name . ' | ' . $type . ' - ' . $action->comment, 0, 50) }}@if(strlen($action->contact->first_name . ' ' . $action->contact->last_name . ' | ' . $type . ' - ' . $action->comment) > 50)...@endif</span>
+                            </div>
+
                                 @php
                                 $now = \Carbon\Carbon::now();
                                 $scheduledAt = $action->scheduled_at ? \Carbon\Carbon::parse($action->scheduled_at) : null;
@@ -122,7 +135,7 @@
                                                 @elseif ($remainingTime <= 30)
                                                     badge-warning
                                                 @elseif ($remainingTime <= 72)
-                                                    badge-yellow
+                                                    badge-warning
                                                 @else
                                                     badge-success
                                                 @endif
@@ -144,6 +157,7 @@
                                     </div>
                                 </div>
                             </li>
+                            @endif
                             @endforeach
                         </ul>
                     </div>
@@ -290,7 +304,7 @@ $.ajax({
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: ['Jan', 'Feb', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [
                 {
                     label: 'Leads',

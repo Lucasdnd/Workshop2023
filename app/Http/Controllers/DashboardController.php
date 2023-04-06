@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Action;
-use Illuminate\Pagination\Paginator;
+use App\Models\Contact;
+
 
 
 class DashboardController extends Controller
@@ -24,12 +25,12 @@ class DashboardController extends Controller
             END DESC
         ")
         ->paginate(5);
-
+        $contactCount = Contact::count();
         $leadCount = DB::table('contacts')->where('status', 'lead')->count();
         $deadLeadCount = DB::table('contacts')->where('status', 'dead_lead')->count();
         $prospectCount = DB::table('contacts')->where('status', 'prospect')->count();
         $clientCount = DB::table('contacts')->where('status', 'client')->count();
-        $conversionRate = ($clientCount / ($leadCount + $deadLeadCount)) * 100;
+        $conversionRate = ($clientCount / ($contactCount)) * 100;
         $data = [
             'leadCount' => $leadCount,
             'deadLeadCount' => $deadLeadCount,

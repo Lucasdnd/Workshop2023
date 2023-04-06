@@ -34,9 +34,9 @@
     </div>
     <div class="form-group">
       <label for="scheduled_at">Planifiée le :</label>
-      <input type="datetime-local" class="form-control @error('scheduled_at') is-invalid @enderror" id="scheduled_at" name="scheduled_at" value="{{ old('scheduled_at') }}">
+      <input type="datetime-local" class="form-control @error('scheduled_at') is-invalid @enderror" id="scheduled_at" name="scheduled_at" value="{{ old('scheduled_at') }}" max="{{ date('Y') }}-12-31T23:59:59">
       @error('scheduled_at')
-      <div class="invalid-feedback">{{ $message }}</div>
+        <div class="invalid-feedback">{{ $message }}</div>
       @enderror
     </div>
     <div class="form-group">
@@ -50,7 +50,10 @@
       <div class="invalid-feedback">{{ $message }}</div>
       @enderror
     </div>
-    <button type="submit" class="btn btn-primary">Créer</button>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Créer</button>
+      <a href="{{ route('actions.index') }}" class="btn btn-secondary">Retour</a>
+    </div>
   </form>
 </div>
 @endsection

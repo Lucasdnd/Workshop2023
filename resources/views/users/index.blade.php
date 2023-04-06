@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container">
-    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Créer un utilisateur</a>
+    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Créer un utilisateur</a>
     <table class="table">
         <thead>
             <tr>
@@ -27,12 +27,12 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->role }}</td>
                 <td>
-                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-info">Voir</a>
-                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Mettre à jour</a>
+                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline-block">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </td>
             </tr>

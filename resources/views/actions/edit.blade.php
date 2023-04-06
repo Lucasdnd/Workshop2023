@@ -46,7 +46,10 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <a href="{{ route('actions.index') }}" class="btn btn-secondary">Retour</a>
+        </div>
     </form>
 </div>
 @stop

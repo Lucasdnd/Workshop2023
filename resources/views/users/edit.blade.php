@@ -30,7 +30,10 @@
                         <option value="Admin" @if($user->role == 'Admin') selected="selected" @endif>Administrateur</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                <div class="form-group">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <a href="{{ route('users.index') }}" class="btn btn-secondary">Retour</a>
+        </div>
             </form>
         </div>
     </div>
