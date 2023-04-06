@@ -104,15 +104,19 @@ class ContactController extends Controller
      */
     public function importContacts(Request $request)
     {
-        $request->validate([
-            'import_file' => 'required|mimes:csv,txt',
-        ]);
+        try {
+            $request->validate([
+                'import_file' => 'required|mimes:csv,txt',
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Type de fichier invalide. Seul les fichiers CSV et TXT sont importables. (' . $e->getMessage() . ')');
+        }
 
         try {
             Excel::import(new ContactsImport, $request->file('import_file'));
-            return redirect()->back()->with('success', 'Contacts imported successfully.');
+            return redirect()->back()->with('success', 'L\'import des contacts a bien été effectué.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error importing contacts: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Une erreur à eu lieu en important les contacts : ' . $e->getMessage());
         }
     }
 
