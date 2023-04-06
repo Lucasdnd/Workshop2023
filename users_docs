@@ -1,0 +1,68 @@
+# Documentation Utilisateur
+
+## Page Dashboard
+
+La page « Dashboard » est la page d’accueil de l’application web, elle afficher des statistiques et des graphiques concernant les contacts et les actions.
+Cette page récupère le nombre de contacts de type « Leads », « Prospects » et « Clients » et calcule le taux de conversion de leads en clients.
+
+Le graphique à secteurs montre la répartition des contacts par statuts et le graphique à barres montre l’évolution du nombre de clients au fil des mois.
+Cette page montre aussi les 5 prochaines actions à venir qui sont triées par date de planifications.
+
+## Page Leads
+
+La page « Leads » permet d’afficher la liste de tous les contacts de statut leads de la base de données.
+Sur cette page, il est possible de :
+
+-   Créer un nouveau contact et de l’enregistrer dans la base de données. Si le contact est de type B2B alors on peut lier le contact à une entreprise.
+-   Afficher les détails d’un contact spécifique ainsi que toutes les actions associées à ce contact.
+-   Mettre à jour un contact existant dans la base de données.
+-   Supprimer un contact de la base de données
+
+De plus il est possible d’envoyer un courriel ou d’appeler le contact ce qui a pour effet de le passer en statut de « Prospect ».
+
+## Page Prospects
+
+La page « Prospects » permet d’afficher la liste de tous les contacts de statut prospects de la base de données.
+Il est possible de réaliser les mêmes actions que sur la page « Leads » avec une fonctionnalité supplémentaire qui est celle de déclarer la vente avec un prospect ce qui a pour effet de le passer en statut de « Client ».
+
+## Page Clients
+
+La page « Clients » permet d’afficher la liste de tous les contacts de statut clients de la base de données. Cette page propose les mêmes fonctionnalités que la page « Leads ».
+
+## Page Exporter les contacts
+
+Il est possible d’exporter tous les contacts de la base de données dans un fichier CSV en cliquant, dans le menu de gauche, sur « Exporter les contacts » qui télécharge un fichier CSV pour l’utilisateur.
+
+## Page Importer les contacts
+
+Il est possible d’importer des contacts dans la base de données en chargeant un fichier CSV ou TXT en cliquant, dans le menu de gauche, sur « Importer les contacts » puis de charger le fichier CSV ou TXT contenant les nouveaux contacts à insérer.
+
+## Page Entreprise
+
+La page « Entreprise » permet d’afficher la liste de toutes les entreprises de la base de données.
+Sur cette page, il est possible de :
+
+-   Créer une nouvelle entreprise et de l’enregistrer dans la base de données.
+-   Afficher les détails d’une entreprise ainsi que tous les contacts appartenant à cette entreprise.
+-   Mettre à jour une entreprise existante dans la base de données.
+-   Supprimer une entreprise de la base de données.
+
+## Page Actions
+
+La page « Actions » permet d’afficher la liste de toutes les actions de la base de données.
+Sur cette page, il est possible de :
+
+-   Créer une nouvelle action.
+-   Afficher les détails d’une action ainsi que de lire les commentaires relatifs à cette action et de permettre à l’utilisateur de pouvoir ajouter un nouveau commentaire, le modifier ou le supprimer.
+-   Mettre à jour une action existante dans la base de données.
+-   Supprimer une action de la base de données.
+
+## Page Utilisateurs
+
+La page « Utilisateurs » permet d’afficher la liste de tous les utilisateurs de la base de données.
+Sur cette page, il est possible de :
+
+-   Créer un nouvel utilisateur avec un rôle « Utilisateur » ou « Administrateur ».
+-   Afficher les détails d’un utilisateur spécifique.
+-   Mettre à jour les informations d’un utilisateur.
+-   Supprimer un utilisateur de la base de données.
