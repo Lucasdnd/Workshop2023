@@ -25,8 +25,17 @@ Si vous souhaitez installer le projet sur votre machine, veuillez suivre les ét
 
  Vous voila avec le projet fonctionnel et prêt à être utilisé ! 🌐
 
+## Documentation utilisateur 💡
+
+Une documentation utilisateur est disponible pour expliquer le fonctionnement de l'application et guider l'utilisateur dans l'utilisation des différentes fonctionnalités de cette dernière.
+
 ## Auteurs 👥
 
 - DURAND Lucas
 - MASCOLO Nicola
 
+## Licence 🔖
+
+MIT License
+
+Copyright (c) 2023 - DURAND Lucas & MASCOLO Nicola
