@@ -28,5 +28,5 @@ Si vous souhaitez installer le projet sur votre machine, veuillez suivre les ét
 ## Auteurs 👥
 
 - DURAND Lucas
-- MASCOLO Nicolas
+- MASCOLO Nicola
 
