@@ -27,7 +27,7 @@ Si vous souhaitez installer le projet sur votre machine, veuillez suivre les ét
 
 ## Documentation utilisateur 💡
 
-Une documentation utilisateur est disponible pour expliquer le fonctionnement de l'application et guider l'utilisateur dans l'utilisation des différentes fonctionnalités de cette dernière.
+Une documentation utilisateur est disponible à la racine du projet pour expliquer le fonctionnement de l'application et guider l'utilisateur dans l'utilisation des différentes fonctionnalités de cette dernière.
 
 ## Auteurs 👥
 
@@ -37,5 +37,3 @@ Une documentation utilisateur est disponible pour expliquer le fonctionnement de
 ## Licence 🔖
 
 MIT License
-
-Copyright (c) 2023 - DURAND Lucas & MASCOLO Nicola
