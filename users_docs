@@ -1,12 +1,22 @@
 # Documentation Utilisateur
 
+## Page de Connexion 
+
+La page de connexion est la première page sur laquelle un utilisateur est censé arriver. 
+S’il dispose d’un compte, il peut alors s’enregistrer avec ses identifiants de connexion et peut cocher la case « Se souvenir de moi » afin de sauvegarder ses identifiants et qu’il n’est pas à s’enregistrer de nouveau la prochaine fois en utilisant le même support .
+
+S’il ne dispose pas d’identifiants, il doit alors demander à l’administrateur de lui créer un compte utilisateur pour pouvoir accéder à l’application.
+
+Un utilisateur peut également créer un nouveau mot de passe si ce dernier à oublier son mot de passe en cliquant sur la section « J’ai oublié mon mot de passe »
+
 ## Page Dashboard
 
-La page « Dashboard » est la page d’accueil de l’application web, elle afficher des statistiques et des graphiques concernant les contacts et les actions.
+La page « Dashboard » est la page d’accueil de l’application web, elle affiche des statistiques et des graphiques concernant les contacts et une liste de tâches à réaliser par ordre de priorité chronologique d’actions.
 Cette page récupère le nombre de contacts de type « Leads », « Prospects » et « Clients » et calcule le taux de conversion de leads en clients.
 
 Le graphique à secteurs montre la répartition des contacts par statuts et le graphique à barres montre l’évolution du nombre de clients au fil des mois.
-Cette page montre aussi les 5 prochaines actions à venir qui sont triées par date de planifications.
+Cette page montre aussi les prochaines actions à venir qui sont triées par date de planifications à travers une Todo Liste disposant d’une pagination.
+Pour finir elle dispose également d’un centre des notifications en bas de page afin de pouvoir être alerté pour chaque nouvelle action réalisée.
 
 ## Page Leads
 
@@ -27,7 +37,7 @@ Il est possible de réaliser les mêmes actions que sur la page « Leads » avec
 
 ## Page Clients
 
-La page « Clients » permet d’afficher la liste de tous les contacts de statut clients de la base de données. Cette page propose les mêmes fonctionnalités que la page « Leads ».
+La page « Clients » permet d’afficher la liste de tous les contacts de statut clients de la base de données avec qui une vente a été conclue. Cette page propose les mêmes fonctionnalités que la page « Leads ».
 
 ## Page Exporter les contacts
 
@@ -36,6 +46,8 @@ Il est possible d’exporter tous les contacts de la base de données dans un fi
 ## Page Importer les contacts
 
 Il est possible d’importer des contacts dans la base de données en chargeant un fichier CSV ou TXT en cliquant, dans le menu de gauche, sur « Importer les contacts » puis de charger le fichier CSV ou TXT contenant les nouveaux contacts à insérer.
+
+Voici un format de fichier d’importation valide : "first_name","last_name","email","phone","address","city","state","zip_code","country","status","type"
 
 ## Page Entreprise
 
@@ -57,6 +69,10 @@ Sur cette page, il est possible de :
 -   Mettre à jour une action existante dans la base de données.
 -   Supprimer une action de la base de données.
 
+Il est également possible de validé une action et la marqué comme réalisée, ainsi, elle n’apparaitra plus dans la Todo Liste sur la page « Dashboard ».
+
+De plus chaque action est associées à un contact en particulier, dans la page de détails d’un contact, on peut ainsi retrouver les actions qui lui sont liées.
+
 ## Page Utilisateurs
 
 La page « Utilisateurs » permet d’afficher la liste de tous les utilisateurs de la base de données.
@@ -66,3 +82,5 @@ Sur cette page, il est possible de :
 -   Afficher les détails d’un utilisateur spécifique.
 -   Mettre à jour les informations d’un utilisateur.
 -   Supprimer un utilisateur de la base de données.
+
+Cette page est uniquement accessible et visible par l’administrateur, seul ce dernier peut ainsi créer des comptes au sein de l’application.
