@@ -1,4 +1,4 @@
-# CMS WORKSHOP 2023 📈
+# CRM WORKSHOP 2023 📈
 
 Création d'un CRM Open Source afin de simplifier la gestion de la relation client à travers différents status (Leads, Prospects et Clients). 
 
@@ -23,7 +23,7 @@ Si vous souhaitez installer le projet sur votre machine, veuillez suivre les ét
 4. Executer les migrations avec `php artisan migrate`
 5. Puis pour lancer le serveur faite un `php artisan serve`
 
- Vous voila avec le projet fonctionnel et prêt à être utilisé ! 🌐
+Vous voila avec le projet fonctionnel et prêt à être utilisé ! 🌐
 
 ## Documentation utilisateur 💡
 
